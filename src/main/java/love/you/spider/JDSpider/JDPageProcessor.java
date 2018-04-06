@@ -1,11 +1,11 @@
 package love.you.spider.JDSpider;
 
+import love.you.spider.webmagic.MyHttpClientDownloader;
 import love.you.spider.webmagic.MyQueueScheduler;
 import org.apache.http.HttpHost;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import us.codecraft.webmagic.*;
-import us.codecraft.webmagic.downloader.HttpClientDownloader;
 import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.utils.HttpConstant;
 
@@ -40,7 +40,7 @@ public class JDPageProcessor implements PageProcessor {
                 .addPipeline(new JDPipeline())
                 //不要去除重复请求处理
                 .setScheduler(new MyQueueScheduler())
-                .setDownloader(new HttpClientDownloader())
+                .setDownloader(new MyHttpClientDownloader())
                 .thread(1);
         Request request = new Request("https://xueqiu.com/");
         request.setMethod(HttpConstant.Method.GET);

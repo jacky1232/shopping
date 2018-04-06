@@ -19,6 +19,7 @@ import us.codecraft.webmagic.proxy.Proxy;
 import us.codecraft.webmagic.selector.PlainText;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,6 +31,18 @@ import java.util.Map;
  */
 public class MyHttpClientDownloader extends HttpClientDownloader {
     private Logger logger = LoggerFactory.getLogger(getClass());
+
+    public MyHttpClientDownloader()  {
+        try {
+            Field field = this.getClass().getSuperclass().getDeclaredField("httpClientGenerator");
+            field.setAccessible(true);
+            field.set(this,new MyHttpClientGenerator());
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }

@@ -18,6 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.downloader.CustomRedirectStrategy;
+import us.codecraft.webmagic.downloader.HttpClientGenerator;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
@@ -36,7 +37,7 @@ import java.util.Map;
  * 解决绕过https问题,参考csdn网页https://blog.csdn.net/zhlei12345/article/details/72675573
  * @Date: Created in 16:33 2018/4/6 0006
  */
-public class MyHttpClientGenerator {
+public class MyHttpClientGenerator extends HttpClientGenerator {
     private transient Logger logger = LoggerFactory.getLogger(getClass());
 
     private PoolingHttpClientConnectionManager connectionManager;
