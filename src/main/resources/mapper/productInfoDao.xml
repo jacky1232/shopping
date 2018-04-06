@@ -48,8 +48,8 @@
       )
     values ( #{productId,jdbcType=BIGINT}, #{productName,jdbcType=VARCHAR},
       #{productTitle,jdbcType=VARCHAR}, #{productDesc,jdbcType=VARCHAR}, #{productPrice,jdbcType=DOUBLE}, 
-      #{productEntrance,jdbcType=VARCHAR}, #{producSaleQuantity,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{productImage,jdbcType=LONGVARBINARY}
+      #{productEntrance,jdbcType=VARCHAR}, #{producSaleQuantity,jdbcType=INTEGER},  now(),,
+     now(), #{remark,jdbcType=VARCHAR}, #{productImage,jdbcType=LONGVARBINARY}
       )
   </insert>
   <insert id="insertSelective" parameterType="love.you.po.ProductInfo" >
@@ -82,12 +82,11 @@
       <if test="producSaleQuantity != null" >
         produc_sale_quantity,
       </if>
-      <if test="createTime != null" >
+
         create_time,
-      </if>
-      <if test="updateTime != null" >
+
         update_time,
-      </if>
+
       <if test="remark != null" >
         remark,
       </if>
@@ -118,12 +117,11 @@
       <if test="producSaleQuantity != null" >
         #{producSaleQuantity,jdbcType=INTEGER},
       </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null" >
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
+
+      now(),
+
+       now(),
+
       <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
       </if>

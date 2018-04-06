@@ -16,8 +16,12 @@ public class ProductInfoServiceTest extends AbstractSpringbootTest {
 
     @Test
     public void saveTest() {
-//        ProductInfo productInfo = ProductInfo
-//        productInfoService.save(productInfo);
+        ProductInfo productInfo = ProductInfo.builder()
+                .productEntrance("京东")
+                .productName("鞋子")
+                .productId(1232L)
+                .productPrice(230.00).productTitle("贵人鸟").producSaleQuantity(12).build();
+        productInfoService.save(productInfo);
     }
 
 }
