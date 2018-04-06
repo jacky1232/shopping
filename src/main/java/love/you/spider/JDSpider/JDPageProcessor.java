@@ -2,6 +2,7 @@ package love.you.spider.JDSpider;
 
 import love.you.spider.webmagic.MyHttpClientDownloader;
 import love.you.spider.webmagic.MyQueueScheduler;
+import love.you.spider.webmagic.PipelineCommon;
 import org.apache.http.HttpHost;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,7 +38,7 @@ public class JDPageProcessor implements PageProcessor {
     public static void main(String[] args) {
         //考虑绕过https，和不要去除重复请求处理
         Spider spider =  Spider.create(new JDPageProcessor())
-                .addPipeline(new JDPipeline())
+                .addPipeline(new PipelineCommon())
                 //不要去除重复请求处理
                 .setScheduler(new MyQueueScheduler())
                 .setDownloader(new MyHttpClientDownloader())
