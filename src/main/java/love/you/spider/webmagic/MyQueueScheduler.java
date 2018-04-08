@@ -4,8 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import us.codecraft.webmagic.Request;
 import us.codecraft.webmagic.Task;
+import us.codecraft.webmagic.scheduler.DuplicateRemovedScheduler;
 import us.codecraft.webmagic.scheduler.MonitorableScheduler;
-import us.codecraft.webmagic.scheduler.Scheduler;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -15,7 +15,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  * @Description:不要过滤相同的请求url
  * @Date: Created in 17:20 2018/4/6 0006
  */
-public class MyQueueScheduler implements Scheduler,MonitorableScheduler {
+public class MyQueueScheduler extends DuplicateRemovedScheduler implements MonitorableScheduler {
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
     private BlockingQueue<Request> queue = new LinkedBlockingQueue<Request>();
@@ -23,8 +23,7 @@ public class MyQueueScheduler implements Scheduler,MonitorableScheduler {
 
     @Override
     public int getTotalRequestsCount(Task task) {
-        logger.info("getTotalRequestsCount:" + queue.size());
-        return queue.size();
+        return getDuplicateRemover().getTotalRequestsCount(task);
     }
 
     @Override
